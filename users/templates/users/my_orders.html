@@ -1,0 +1,54 @@
+{% extends "users/base.html" %}
+{% block title %} Home Page {% endblock title%}
+{% block content %}
+<!-- {% include 'users/side_panel_profile.html' %} -->
+{% load static %}
+<link href="{% static 'css\profile_page.css' %}" rel="stylesheet">
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"> -->
+
+
+<div class="main">
+  <!-- <head>
+      {{form.media}}
+      <title> My Forum Post</title>
+      <script src="https://cdn.tiny.cloud/1/68j3cnbey1kzlifrszj8weq2sp22nr5nmua9fsaj21i32hg2/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+
+  </head> -->
+<body>
+<!-- 
+<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+    </div>
+    </div> -->
+
+
+<!-- Blog Entries Column -->
+<!-- <div class="col-md-8 mt-3 left"> -->
+
+    {% for order in orders %}
+
+    
+    <div class="card mb-4">
+        <div class="card-body">
+            <h2 class="card-title">{{ order.title }}</h2>
+            <p class="card-text text-muted h6">{{ order.author }} | {{ order.updated_at}} </p>
+            <!-- asdada -->
+            {% for parm, values in order.content.items %}
+                <p class="card-text">{{parm}} {{values}} </p>
+            {% endfor %}
+            {% if order.created_at %}
+                <a href="/orders/edit_order/{{order.id}}" class="btn btn-primary">Edit &rarr;</a>
+            {% endif %}
+            
+            <a href="/orders/show_order/{{order.id}}" class="btn btn-primary">Preview &rarr;</a>
+        </div>
+    </div>
+    {% endfor %}
+<!-- </div> -->
+{% block sidebar %} {% include 'users/sidebar.html' %} {% endblock sidebar %}
+
+{%endblock%}

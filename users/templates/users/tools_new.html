@@ -1,0 +1,52 @@
+{% extends "users/base.html" %}
+{% block title %} Home Page {% endblock title%}
+{% block content %}
+
+<style>
+    .grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: #ffffff;
+    padding: 10px;
+    align-items: center;
+    }
+    .grid-item {
+        background-color: rgba(125, 182, 247, 0.8);
+        border: 8px solid rgb(255, 255, 255);
+        border-radius: 15px;
+        /* border-collapse: separate; */
+        border-spacing: 2px;
+        padding: 10px;
+        font-size: 30px;
+        text-align: center;
+        }
+
+    .card-text{
+        font-size: 15px;
+        color: darkolivegreen;
+    }
+
+    </style>
+
+
+<div class="grid-container">
+
+  <!-- <div class="row"> -->
+    <!--  <div class = "grid-item"> -->
+      <!-- <div class="col-md-10 mt-1">  -->
+          {% for post in tools %}
+          <div class="grid-item">
+            <div class="card-body">
+                <h2 class="card-title">{{ post.title }}</h2>
+                <!-- <p class="card-text text-muted h6"> {{ post.created_on}} </p> -->
+                <p class="card-text">{{post.content|slice:":200" }}</p>
+                <a href="{{post.slug}}" class="btn btn-primary">Read More &rarr;</a>
+            </div>
+          </div>
+          {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{%endblock%}
